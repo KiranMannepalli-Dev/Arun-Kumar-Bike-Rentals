@@ -1,56 +1,61 @@
+import type { Metadata } from "next";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { SITE_CONFIG } from "@/config/site";
+import { FULL_FAQ_ITEMS, buildBreadcrumbJsonLd, buildFaqJsonLd } from "@/lib/seo";
 
-const faqItems = [
-    {
-        question: "What documents are required to rent a bike?",
-        answer: "To rent a bike, you must provide a valid original Driving License, an Aadhaar Card or PAN Card, and a valid Local Address Proof (such as a utility bill or rental agreement)."
+export const metadata: Metadata = {
+    title: "EV Scooter Rental FAQ Hyderabad | Documents, Deposit & Pricing",
+    description: "Answers to common questions about Winev electric scooter rentals in Hyderabad: required Driving License & ID, ₹2,000 refundable deposit, 45-min fast charging, and weekly/monthly plans.",
+    alternates: {
+        canonical: "/faq",
     },
-    {
-        question: "Is there a security deposit?",
-        answer: "Yes, we maintain a minimal security deposit of ₹2,000 to ensure the safety and maintenance of our premium electric fleet. This is fully refundable upon the safe return of the vehicle."
+    openGraph: {
+        title: "EV Scooter Rental FAQ Hyderabad | Winev Scooter Rental",
+        description: "Quick answers on required documents, ₹2,000 refundable deposit, charging speed, and WhatsApp booking.",
+        url: `${SITE_CONFIG.url}/faq`,
     },
-    {
-        question: "What are the performance specs of the bikes?",
-        answer: "Our premium EV fleet offers a range of up to 100km on a full charge and a top speed of 80kmh. We also provide support for both Ather and Vida power stations for quick 45-minute charging (up to 80%)."
-    },
-    {
-        question: "Do you offer weekly or long-term rentals?",
-        answer: "Absolutely! We offer special weekly rental rates starting at ₹2,200. This is perfect for commuters or travelers looking for an affordable long-term mobility solution."
-    },
-    {
-        question: "What is the booking process?",
-        answer: "You can book easily through WhatsApp. Just send us a message to our primary number (90148 27770) or our secondary line (78931 16525), and our team will guide you through the instant booking process."
-    }
-];
+};
 
 export default function FaqPage() {
+    const jsonLd = [
+        buildFaqJsonLd(FULL_FAQ_ITEMS, `${SITE_CONFIG.url}/faq`),
+        buildBreadcrumbJsonLd([
+            { name: "Home", path: "/" },
+            { name: "FAQ", path: "/faq" },
+        ]),
+    ];
+
     return (
-        <div className="pt-12">
-            <header className="py-6 md:py-8 text-center bg-card border-b">
+        <div className="pt-12 bg-white">
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            />
+            <header className="py-5 md:py-6 text-center bg-zinc-50/80 border-b border-zinc-200">
                 <div className="container">
-                    <h1 className="text-lg md:text-2xl font-semibold">Frequently Asked Questions</h1>
-                    <p className="mt-2 text-xs text-muted-foreground max-w-2xl mx-auto">
-                        Find answers to common questions about our bike rental service.
+                    <h1 className="text-lg md:text-2xl font-semibold text-zinc-950">Frequently Asked <span className="text-primary">Questions</span></h1>
+                    <p className="mt-1.5 text-xs text-zinc-600 max-w-2xl mx-auto">
+                        Find answers to common questions about our EV scooter rental service.
                     </p>
                 </div>
             </header>
 
-            <main className="py-8 md:py-10">
+            <section className="py-6 md:py-8 bg-white">
                 <div className="container max-w-2xl mx-auto">
                     <Accordion type="single" collapsible className="w-full">
-                        {faqItems.map((item, index) => (
-                            <AccordionItem key={index} value={`item-${index}`}>
-                                <AccordionTrigger className="text-left text-[11px] hover:no-underline">
+                        {FULL_FAQ_ITEMS.map((item, index) => (
+                            <AccordionItem key={index} value={`item-${index}`} className="border-zinc-200">
+                                <AccordionTrigger className="text-left text-xs sm:text-sm text-zinc-950 hover:text-primary hover:no-underline py-3 font-medium">
                                     {item.question}
                                 </AccordionTrigger>
-                                <AccordionContent className="text-[10px] text-muted-foreground">
+                                <AccordionContent className="text-xs sm:text-sm text-zinc-600 leading-relaxed pb-3">
                                     {item.answer}
                                 </AccordionContent>
                             </AccordionItem>
                         ))}
                     </Accordion>
                 </div>
-            </main>
+            </section>
         </div>
     );
 }

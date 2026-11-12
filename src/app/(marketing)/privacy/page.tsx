@@ -1,30 +1,36 @@
-"use client";
-
+import type { Metadata } from "next";
 import { SITE_CONFIG } from "@/config/site";
-import { useEffect, useState } from "react";
+import { buildBreadcrumbJsonLd } from "@/lib/seo";
+
+export const metadata: Metadata = {
+  title: "Privacy Policy",
+  description: `Privacy Policy for ${SITE_CONFIG.name}. Learn how we collect, verify, and safeguard your rental information.`,
+  alternates: {
+    canonical: "/privacy",
+  },
+};
 
 export default function PrivacyPolicyPage() {
-  const [lastUpdated, setLastUpdated] = useState<string | null>(null);
-
-  useEffect(() => {
-    setLastUpdated(new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }));
-  }, []);
+  const breadcrumbJsonLd = buildBreadcrumbJsonLd([
+    { name: "Home", path: "/" },
+    { name: "Privacy Policy", path: "/privacy" },
+  ]);
 
   return (
-    <div className="pt-16">
-      <header className="py-10 md:py-12 text-center bg-card border-b">
+    <div className="pt-12 bg-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      <header className="py-6 md:py-8 text-center bg-zinc-50/80 border-b border-zinc-200">
         <div className="container">
-          <h1 className="text-2xl md:text-3xl font-headline font-semibold">Privacy Policy</h1>
-          {lastUpdated ? (
-            <p className="mt-2 text-sm text-muted-foreground">Last Updated: {lastUpdated}</p>
-          ) : (
-            <div className="h-5 mt-2" />
-          )}
+          <h1 className="text-2xl md:text-3xl font-headline font-semibold text-zinc-950">Privacy <span className="text-primary">Policy</span></h1>
+          <p className="mt-2 text-sm text-zinc-600">Last Updated: November 2026</p>
         </div>
       </header>
       
-      <main className="py-10 md:py-12">
-        <div className="container max-w-3xl mx-auto prose prose-invert text-muted-foreground prose-sm">
+      <section className="py-6 md:py-8 bg-white">
+        <div className="container max-w-3xl mx-auto text-sm leading-relaxed text-zinc-700 [&_h2]:text-base [&_h2]:font-semibold [&_h2]:text-primary [&_h2]:mt-6 [&_h2]:mb-2 [&_p]:mb-3 [&_ul]:list-disc [&_ul]:pl-5 [&_ul]:space-y-1 [&_ul]:mb-3 [&_strong]:text-zinc-950 [&_a]:text-primary [&_a]:underline">
             <p>Welcome to {SITE_CONFIG.name}. We are committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our bike rental services.</p>
 
             <h2>1. Information We Collect</h2>
@@ -56,9 +62,9 @@ export default function PrivacyPolicyPage() {
             <p>We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page. You are advised to review this Privacy Policy periodically for any changes.</p>
 
             <h2>6. Contact Us</h2>
-            <p>If you have any questions about this Privacy Policy, please contact us at <a href={`mailto:${SITE_CONFIG.email}`}>{SITE_CONFIG.email}</a>.</p>
+            <p>If you have any questions about this Privacy Policy, please contact us at <a href={`mailto:${SITE_CONFIG.email}`} className="break-all">{SITE_CONFIG.email}</a>.</p>
         </div>
-      </main>
+      </section>
     </div>
   );
 }

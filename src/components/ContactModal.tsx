@@ -21,14 +21,19 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import { SITE_CONFIG } from "@/config/site";
-import { Send, Phone, User, MessageSquare } from "lucide-react";
+import { QuickMessageChips } from "@/components/QuickMessageChips";
+import { normalizeIndianPhone, openWhatsAppChat } from "@/lib/whatsapp";
+import { MessageCircle, Phone, User, MessageSquare } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 const formSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
-  phone: z.string().regex(/^\d{10}$/, "Please enter a valid 10-digit phone number"),
-  message: z.string().min(5, "Please tell us a bit more about your requirement"),
+  phone: z
+    .string()
+    .refine((val) => /^\d{10}$/.test(normalizeIndianPhone(val)), {
+      message: "Please enter a valid 10-digit phone number",
+    }),
+  message: z.string().min(5, "Please choose a quick message or enter your requirement"),
 });
 
 type FormValues = z.infer<typeof formSchema>;
@@ -50,32 +55,29 @@ export function ContactModal({
     },
   });
 
+  const watchedMessage = form.watch("message");
+
   const onSubmit = (values: FormValues) => {
-    // Prepare WhatsApp message as a fallback/direct action
-    const whatsappMessage = `Hello Winev! I'm ${values.name}. I'm interested in renting a bike. \n\nMessage: ${values.message} \n\nMy number: ${values.phone}`;
-    const whatsappUrl = `https://wa.me/${SITE_CONFIG.whatsapp}?text=${encodeURIComponent(
-      whatsappMessage
-    )}`;
+    const cleanPhone = normalizeIndianPhone(values.phone);
+    const whatsappMessage = `Hello Winev! I'm ${values.name.trim()} (${cleanPhone}).\n\nEnquiry: ${values.message.trim()}`;
+
+    openWhatsAppChat(whatsappMessage);
 
     toast({
-      title: "Enquiry Sent!",
-      description: "We've received your details. Connecting you to WhatsApp for instant confirmation...",
+      title: "Opening WhatsApp...",
+      description: "Your pre-filled scooter rental enquiry is ready to send.",
     });
 
-    // Opening WhatsApp
-    setTimeout(() => {
-      window.open(whatsappUrl, "_blank");
-      onClose();
-      form.reset();
-    }, 1500);
+    onClose();
+    form.reset();
   };
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
-      <DialogContent className="sm:max-w-[450px] border-primary/20 bg-background/95 backdrop-blur-xl">
+      <DialogContent className="sm:max-w-[450px] border-zinc-200 bg-white text-zinc-950 shadow-2xl">
         <DialogHeader>
-          <DialogTitle className="text-2xl font-bold tracking-tight">Get in Touch</DialogTitle>
-          <DialogDescription className="text-muted-foreground italic">
+          <DialogTitle className="text-2xl font-bold tracking-tight text-zinc-950">Get in <span className="text-primary">Touch</span></DialogTitle>
+          <DialogDescription className="text-zinc-600 italic">
             Thinking about a ride? Leave your details and we'll help you pick the perfect EV.
           </DialogDescription>
         </DialogHeader>
@@ -87,12 +89,12 @@ export function ContactModal({
               name="name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="flex items-center gap-2">
+                  <FormLabel className="flex items-center gap-2 text-zinc-900">
                     <User className="h-4 w-4 text-primary" />
                     Full Name
                   </FormLabel>
                   <FormControl>
-                    <Input placeholder="John Doe" {...field} className="rounded-xl border-primary/10 bg-primary/5 focus:bg-background transition-all" />
+                    <Input placeholder="John Doe" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -103,30 +105,36 @@ export function ContactModal({
               name="phone"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="flex items-center gap-2">
+                  <FormLabel className="flex items-center gap-2 text-zinc-900">
                     <Phone className="h-4 w-4 text-primary" />
                     Phone Number
                   </FormLabel>
                   <FormControl>
-                    <Input placeholder="98480 12345" {...field} className="rounded-xl border-primary/10 bg-primary/5 focus:bg-background transition-all" />
+                    <Input placeholder="98480 12345" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
+            />
+            <QuickMessageChips
+              currentMessage={watchedMessage}
+              onSelect={(msg) =>
+                form.setValue("message", msg, { shouldValidate: true, shouldDirty: true })
+              }
             />
             <FormField
               control={form.control}
               name="message"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="flex items-center gap-2">
+                  <FormLabel className="flex items-center gap-2 text-zinc-900">
                     <MessageSquare className="h-4 w-4 text-primary" />
-                    Special Requirements
+                    Your Enquiry Message
                   </FormLabel>
                   <FormControl>
                     <Textarea 
-                      placeholder="I want to rent a scooter for 3 days..." 
-                      className="min-h-[100px] rounded-xl border-primary/10 bg-primary/5 focus:bg-background transition-all resize-none" 
+                      placeholder="Tap a quick message above or type your rental requirement..." 
+                      className="min-h-[96px] resize-none" 
                       {...field} 
                     />
                   </FormControl>
@@ -134,9 +142,9 @@ export function ContactModal({
                 </FormItem>
               )}
             />
-            <Button type="submit" className="w-full rounded-full h-12 text-lg font-bold shadow-xl hover:scale-[1.02] transition-all group" size="lg">
-              <Send className="mr-2 h-5 w-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-              Send Enquiry
+            <Button type="submit" variant="whatsapp" className="w-full shadow-lg" size="lg">
+              <MessageCircle className="h-4 w-4" />
+              Send Enquiry on WhatsApp
             </Button>
           </form>
         </Form>

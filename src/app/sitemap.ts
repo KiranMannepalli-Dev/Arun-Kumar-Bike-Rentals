@@ -1,21 +1,51 @@
-import { MetadataRoute } from 'next';
-import { SITE_CONFIG } from '@/config/site';
+import type { MetadataRoute } from "next";
+import { SITE_CONFIG } from "@/config/site";
 
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const routes = [
-    '',
-    '/about',
-    '/bikes',
-    '/contact',
-    '/faq',
-    '/privacy',
-    '/terms',
-  ].map((route) => ({
-    url: `${SITE_CONFIG.url}${route}`,
-    lastModified: new Date(),
-    changeFrequency: 'weekly' as const,
-    priority: route === '' ? 1 : 0.8,
-  }));
+const LAST_MODIFIED = new Date("2026-11-12");
 
-  return routes;
+export default function sitemap(): MetadataRoute.Sitemap {
+  return [
+    {
+      url: SITE_CONFIG.url,
+      lastModified: LAST_MODIFIED,
+      changeFrequency: "weekly",
+      priority: 1,
+      images: [
+        `${SITE_CONFIG.url}/Bikes/Hero BG web and Tab home page.png`,
+        `${SITE_CONFIG.url}/Bikes/Scooter png 1.jpg`,
+        `${SITE_CONFIG.url}/Second Logo for Winev.png`,
+      ],
+    },
+    {
+      url: `${SITE_CONFIG.url}/contact`,
+      lastModified: LAST_MODIFIED,
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
+    {
+      url: `${SITE_CONFIG.url}/faq`,
+      lastModified: LAST_MODIFIED,
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
+    {
+      url: `${SITE_CONFIG.url}/about`,
+      lastModified: LAST_MODIFIED,
+      changeFrequency: "monthly",
+      priority: 0.8,
+      images: [`${SITE_CONFIG.url}/Arun 1.jpeg`],
+    },
+    {
+      url: `${SITE_CONFIG.url}/privacy`,
+      lastModified: LAST_MODIFIED,
+      changeFrequency: "yearly",
+      priority: 0.4,
+    },
+    {
+      url: `${SITE_CONFIG.url}/terms`,
+      lastModified: LAST_MODIFIED,
+      changeFrequency: "yearly",
+      priority: 0.4,
+    },
+  ];
 }

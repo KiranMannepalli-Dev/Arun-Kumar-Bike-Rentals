@@ -8,9 +8,11 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { QuickMessageChips } from "@/components/QuickMessageChips";
 import { useToast } from "@/hooks/use-toast";
 import { SITE_CONFIG } from "@/config/site";
-import { Mail, Phone, MapPin } from "lucide-react";
+import { openWhatsAppChat } from "@/lib/whatsapp";
+import { Mail, Phone, MapPin, MessageCircle } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 const formSchema = z.object({
@@ -31,47 +33,37 @@ export default function ContactContent() {
     },
   });
 
-  async function onSubmit(values: z.infer<typeof formSchema>) {
-    try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(values),
-      });
+  const watchedMessage = form.watch("message");
 
-      if (!response.ok) throw new Error("Server error");
+  function onSubmit(values: z.infer<typeof formSchema>) {
+    const whatsappMessage = `Hello Winev! I'm ${values.name.trim()} (${values.email.trim()}).\n\nMessage: ${values.message.trim()}`;
 
-      toast({
-        title: "Message Sent!",
-        description: "Thanks for reaching out. We'll get back to you soon.",
-      });
-      form.reset();
-    } catch (e) {
-      toast({
-        variant: "destructive",
-        title: "Uh oh! Something went wrong.",
-        description: "Could not send your message. Please try again.",
-      });
-    }
+    openWhatsAppChat(whatsappMessage);
+
+    toast({
+      title: "Opening WhatsApp...",
+      description: "Your pre-filled message is ready to send on WhatsApp.",
+    });
+    form.reset();
   }
 
   return (
-    <main className="pt-12">
-      <header className="py-6 md:py-8 text-center bg-card border-b">
+    <div className="pt-12 bg-white">
+      <header className="py-5 md:py-6 text-center bg-zinc-50/80 border-b border-zinc-200">
         <div className="container">
-          <h1 className="text-lg md:text-2xl font-semibold">Contact Us</h1>
-          <p className="mt-2 text-xs text-muted-foreground max-w-2xl mx-auto">
+          <h1 className="text-lg md:text-2xl font-semibold text-zinc-950">Contact <span className="text-primary">Us</span></h1>
+          <p className="mt-1.5 text-xs text-zinc-600 max-w-2xl mx-auto">
             Have questions or need support? We're here to help.
           </p>
         </div>
       </header>
       
-      <section className="py-8 md:py-10">
+      <section className="py-6 md:py-8 bg-white">
         <div className="container">
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-2 gap-6">
             <div>
-              <h2 className="text-base font-semibold text-foreground">Get in Touch</h2>
-              <p className="mt-2 text-xs text-muted-foreground">Fill out the form and we'll get back to you as soon as possible.</p>
+              <h2 className="text-base font-semibold text-zinc-950">Get in <span className="text-primary">Touch</span></h2>
+              <p className="mt-2 text-xs text-zinc-600">Fill out the form and we'll get back to you as soon as possible.</p>
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="mt-5 space-y-4">
                   <FormField
@@ -79,7 +71,7 @@ export default function ContactContent() {
                     name="name"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-xs">Full Name</FormLabel>
+                        <FormLabel className="text-xs text-zinc-900">Full Name</FormLabel>
                         <FormControl>
                           <Input placeholder="John Doe" {...field} />
                         </FormControl>
@@ -92,7 +84,7 @@ export default function ContactContent() {
                     name="email"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-xs">Email Address</FormLabel>
+                        <FormLabel className="text-xs text-zinc-900">Email Address</FormLabel>
                         <FormControl>
                           <Input placeholder="john.doe@example.com" {...field} />
                         </FormControl>
@@ -100,28 +92,37 @@ export default function ContactContent() {
                       </FormItem>
                     )}
                   />
+                  <QuickMessageChips
+                    currentMessage={watchedMessage}
+                    onSelect={(msg) =>
+                      form.setValue("message", msg, { shouldValidate: true, shouldDirty: true })
+                    }
+                  />
                   <FormField
                     control={form.control}
                     name="message"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-xs">Message</FormLabel>
+                        <FormLabel className="text-xs text-zinc-900">Message</FormLabel>
                         <FormControl>
-                          <Textarea placeholder="How can we help you?" {...field} rows={4} />
+                          <Textarea placeholder="Tap a pre-ready message above or type how we can help you..." {...field} rows={4} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
                     )}
                   />
-                  <Button type="submit" size="sm">Send Message</Button>
+                  <Button type="submit" variant="whatsapp" size="lg" className="w-full sm:w-auto">
+                    <MessageCircle className="h-4 w-4" />
+                    Send via WhatsApp
+                  </Button>
                 </form>
               </Form>
             </div>
             
             <div className="space-y-6">
               <div>
-                <h3 className="text-base font-semibold text-foreground">Our Location</h3>
-                <div className="mt-4 space-y-3 text-xs text-muted-foreground">
+                <h3 className="text-base font-semibold text-zinc-950">Our <span className="text-primary">Location</span></h3>
+                <div className="mt-4 space-y-3 text-xs sm:text-sm text-zinc-700">
                   <div className="flex items-start gap-3">
                     <MapPin className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
                     <span>{SITE_CONFIG.address.full}</span>
@@ -132,11 +133,11 @@ export default function ContactContent() {
                   </div>
                   <div className="flex items-center gap-3">
                     <Mail className="h-4 w-4 text-primary flex-shrink-0" />
-                    <a href={`mailto:${SITE_CONFIG.email}`} className="hover:text-primary">{SITE_CONFIG.email}</a>
+                    <a href={`mailto:${SITE_CONFIG.email}`} className="hover:text-primary break-all">{SITE_CONFIG.email}</a>
                   </div>
                 </div>
               </div>
-              <div className="w-full aspect-video max-w-sm rounded-md overflow-hidden border border-border shadow-sm">
+              <div className="w-full aspect-video max-w-md rounded-2xl overflow-hidden border border-zinc-200 shadow-sm">
                 <iframe
                   src={`https://www.google.com/maps?q=${SITE_CONFIG.coordinates.lat},${SITE_CONFIG.coordinates.lng}&z=17&output=embed`}
                   width="100%"
@@ -153,21 +154,21 @@ export default function ContactContent() {
         </div>
       </section>
 
-      <section className="py-12 md:py-16 bg-zinc-950">
+      <section className="py-6 md:py-8 bg-zinc-50/70 border-t border-zinc-200">
         <div className="container max-w-4xl">
-          <div className="text-center mb-10">
-            <h2 className="text-sm font-medium text-emerald-500 tracking-wide">Frequently Asked Questions</h2>
-            <p className="mt-2 text-[11px] text-zinc-400">Quick answers to common questions about our scooter rentals.</p>
+          <div className="text-center mb-6">
+            <h2 className="text-xl sm:text-2xl font-headline font-semibold text-zinc-950 tracking-tight">Frequently Asked <span className="text-primary">Questions</span></h2>
+            <p className="mt-1.5 text-xs sm:text-sm text-zinc-600">Quick answers to common questions about our scooter rentals.</p>
           </div>
           
           <div className="max-w-2xl mx-auto">
             <Accordion type="single" collapsible className="w-full border-none">
               {faqItems.map((item, index) => (
-                <AccordionItem key={index} value={`item-${index}`} className="border-zinc-800">
-                  <AccordionTrigger className="text-left text-[11px] text-white hover:text-emerald-500 hover:no-underline py-4 font-medium">
+                <AccordionItem key={index} value={`item-${index}`} className="border-zinc-200">
+                  <AccordionTrigger className="text-left text-xs sm:text-sm text-zinc-950 hover:text-primary hover:no-underline py-3 font-medium">
                     {item.question}
                   </AccordionTrigger>
-                  <AccordionContent className="text-[10px] text-zinc-400 leading-relaxed pb-4">
+                  <AccordionContent className="text-xs sm:text-sm text-zinc-600 leading-relaxed pb-3">
                     {item.answer}
                   </AccordionContent>
                 </AccordionItem>
@@ -176,7 +177,7 @@ export default function ContactContent() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   );
 }
 

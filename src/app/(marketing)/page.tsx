@@ -1,53 +1,26 @@
 import { Metadata } from 'next';
 import HomeContent from './HomeContent';
 import { SITE_CONFIG } from '@/config/site';
+import { buildHomeJsonLd } from '@/lib/seo';
 
 export const metadata: Metadata = {
-  title: 'Premium EV Scooter Rentals in Hyderabad | Eco-Friendly Urban Mobility',
-  description: 'Rent premium electric scooters in Hyderabad starting at ₹35/hr. Minimal deposit, GPS-tracked fleet, and instant WhatsApp booking. Join the green revolution with Winev.',
+  title: 'VIDA VX2 Plus Electric Scooter Rentals in Hyderabad from ₹35/hr',
+  description:
+    'Rent the VIDA VX2 Plus electric scooter in Hyderabad starting at ₹35/hr (Daily ₹449, Weekly ₹2,199, Monthly ₹8,799). 100 km range, 80 km/h speed, ₹2,000 refundable deposit, Android & iPhone app support, and instant WhatsApp booking.',
   alternates: {
     canonical: '/',
+  },
+  openGraph: {
+    title: 'VIDA VX2 Plus Electric Scooter Rentals in Hyderabad from ₹35/hr',
+    description:
+      'Rent in 6 colors with 100 km range, 80 km/h speed, 45-min fast charging, and ₹2,000 refundable deposit. Book instantly on WhatsApp.',
+    url: SITE_CONFIG.url,
+    type: 'website',
   },
 };
 
 export default function Home() {
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'LocalBusiness',
-    name: SITE_CONFIG.name,
-    image: `${SITE_CONFIG.url}/og-image.png`,
-    '@id': SITE_CONFIG.url,
-    url: SITE_CONFIG.url,
-    telephone: SITE_CONFIG.phone,
-    address: {
-      '@type': 'PostalAddress',
-      streetAddress: SITE_CONFIG.address.full,
-      addressLocality: 'Hyderabad',
-      addressRegion: 'Telangana',
-      postalCode: '500000', // Assuming a general one if not precise
-      addressCountry: 'IN',
-    },
-    geo: {
-      '@type': 'GeoCoordinates',
-      latitude: SITE_CONFIG.coordinates.lat,
-      longitude: SITE_CONFIG.coordinates.lng,
-    },
-    openingHoursSpecification: [
-      {
-        '@type': 'OpeningHoursSpecification',
-        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-        opens: '08:00',
-        closes: '20:00',
-      },
-      {
-        '@type': 'OpeningHoursSpecification',
-        dayOfWeek: 'Sunday',
-        opens: '08:00',
-        closes: '13:00',
-      },
-    ],
-    priceRange: '₹₹',
-  };
+  const jsonLd = buildHomeJsonLd();
 
   return (
     <>

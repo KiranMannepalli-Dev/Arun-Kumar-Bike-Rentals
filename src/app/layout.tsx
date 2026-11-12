@@ -18,14 +18,26 @@ const outfit = Outfit({
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_CONFIG.url),
+  applicationName: SITE_CONFIG.name,
+  category: 'transportation',
+  alternates: {
+    canonical: '/',
+  },
   title: {
     default: SITE_CONFIG.title,
     template: `%s | ${SITE_CONFIG.name}`,
   },
   description: SITE_CONFIG.description,
   keywords: SITE_CONFIG.keywords,
-  authors: [{ name: SITE_CONFIG.name }],
+  authors: [{ name: SITE_CONFIG.name, url: SITE_CONFIG.url }],
   creator: SITE_CONFIG.name,
+  publisher: SITE_CONFIG.legalName,
+  other: {
+    'geo.region': 'IN-TG',
+    'geo.placename': `${SITE_CONFIG.address.area}, ${SITE_CONFIG.address.city}`,
+    'geo.position': `${SITE_CONFIG.coordinates.lat};${SITE_CONFIG.coordinates.lng}`,
+    ICBM: `${SITE_CONFIG.coordinates.lat}, ${SITE_CONFIG.coordinates.lng}`,
+  },
   openGraph: {
     type: 'website',
     locale: 'en_IN',
@@ -35,9 +47,9 @@ export const metadata: Metadata = {
     siteName: SITE_CONFIG.name,
     images: [
       {
-        url: '/og-image.png',
-        width: 1200,
-        height: 630,
+        url: '/Second Logo for Winev.png',
+        width: 1010,
+        height: 594,
         alt: SITE_CONFIG.name,
       },
     ],
@@ -46,7 +58,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: SITE_CONFIG.title,
     description: SITE_CONFIG.description,
-    images: ['/og-image.png'],
+    images: ['/Second Logo for Winev.png'],
   },
   robots: {
     index: true,
@@ -61,8 +73,7 @@ export const metadata: Metadata = {
   },
 };
 
-import { Suspense } from 'react';
-import { PageTransition } from '@/components/ui/PageTransition';
+import { WhatsAppButton } from '@/components/WhatsAppButton';
 
 export default function RootLayout({
   children,
@@ -70,12 +81,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${outfit.variable} dark`}>
+    <html lang="en" className={`${inter.variable} ${outfit.variable}`}>
       <body className="font-body antialiased bg-background text-foreground min-h-screen">
-        <Suspense fallback={null}>
-          <PageTransition />
-        </Suspense>
         {children}
+        <WhatsAppButton />
         <Toaster />
       </body>
     </html>
