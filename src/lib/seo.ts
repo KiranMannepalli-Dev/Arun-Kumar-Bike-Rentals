@@ -285,7 +285,7 @@ export function buildHomeJsonLd() {
         "@id": `${SITE_CONFIG.url}/#vida-vx2-plus`,
         name: "VIDA VX2 Plus Electric Bike & Scooter Rental in Hyderabad",
         description:
-          "Best bike rentals in Hyderabad. Rent the VIDA VX2 Plus electric scooter & two wheeler starting from ₹35/hr, ₹449/day, ₹2,199/week, or ₹8,799/month across Saroor Nagar, LB Nagar, Dilsukhnagar, and all Hyderabad. 80 km/h speed, 100 km range, 45-min fast charging, Android & iPhone app connectivity, and ₹2,000 refundable deposit.",
+          "Best bike rentals in Hyderabad. Rent the VIDA VX2 Plus electric scooter & two wheeler starting from ₹35/hr, ₹449/day, ₹2,199/week, or ₹8,799/month across Saroor Nagar, LB Nagar, Dilsukhnagar, and all Hyderabad. 80 km/h speed, 110 km range, 45-min fast charging, Android & iPhone app connectivity, and ₹2,000 refundable deposit.",
         image: [
           `${SITE_CONFIG.url}/Bikes/Scooter png 1.jpg`,
           `${SITE_CONFIG.url}/Bikes/Scooter png 2.png`,
@@ -306,7 +306,7 @@ export function buildHomeJsonLd() {
         ],
         additionalProperty: [
           { "@type": "PropertyValue", name: "Top Speed", value: "80 km/h" },
-          { "@type": "PropertyValue", name: "Battery Range", value: "100 km / Charge" },
+          { "@type": "PropertyValue", name: "Battery Range", value: "110 km / Charge" },
           { "@type": "PropertyValue", name: "Fast Charging", value: "45 min (0–80%)" },
           { "@type": "PropertyValue", name: "Mobile Compatibility", value: "Android & iPhone" },
           { "@type": "PropertyValue", name: "Security Deposit", value: "₹2,000 Refundable" },

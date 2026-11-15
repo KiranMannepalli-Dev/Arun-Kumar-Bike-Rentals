@@ -1,7 +1,7 @@
 export const SITE_CONFIG = {
   name: "Winev Bike Rentals",
   title: "Bike Rentals in Hyderabad | Winev - #1 EV Bike & Scooter Rental from ₹35/hr",
-  description: "Best bike rentals in Hyderabad starting at ₹35/hr. Rent premium electric scooters and bikes with 100km range, 80km/h speed, minimal deposit, and instant WhatsApp booking across LB Nagar, Saroor Nagar, Dilsukhnagar, Madhapur, and all Hyderabad.",
+  description: "Best bike rentals in Hyderabad starting at ₹35/hr. Rent premium electric scooters and bikes with 110km range, 80km/h speed, minimal deposit, and instant WhatsApp booking across LB Nagar, Saroor Nagar, Dilsukhnagar, Madhapur, and all Hyderabad.",
   legalName: "Ashwin Traders",
   tagline: "Hyderabad's #1 EV Bike & Scooter Rental Service.",
   phone: "919014827770",
@@ -49,7 +49,7 @@ export const SITE_CONFIG = {
   stats: {
     rides: "5000+",
     rating: "4.9",
-    range: "100km",
+    range: "110km",
     speed: "80kmh",
     scooters: "15+",
     weeklyRent: "2199",

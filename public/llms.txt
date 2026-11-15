@@ -16,7 +16,7 @@
 ## Fleet & Specifications: VIDA VX2 Plus
 - **Category**: Premium Electric Scooter & Two-Wheeler Rental (strictly for rental, not for sale)
 - **Top Speed**: 80 km/h
-- **Range per Charge**: Up to 100 km certified range
+- **Range per Charge**: Up to 110 km certified range
 - **Charging Speed**: 0–80% in 45 minutes (fast charging supported at Ather and Vida public stations)
 - **Mobile Compatibility**: Bluetooth pairing with Android & iPhone (navigation, battery telemetry)
 - **Safety**: Front disc brakes, real-time GPS tracking, helmet included

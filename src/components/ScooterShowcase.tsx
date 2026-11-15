@@ -71,7 +71,7 @@ const SCOOTER_COLORS: ScooterColorVariant[] = [
 
 const SCOOTER_SPECS = [
   { icon: Gauge, label: "Top Speed", value: "80 km/h" },
-  { icon: Zap, label: "Battery Range", value: "100 km / Charge" },
+  { icon: Zap, label: "Battery Range", value: "110 km / Charge" },
   { icon: BatteryCharging, label: "Fast Charging", value: "45 min (0–80%)" },
   { icon: Smartphone, label: "Mobile Compatibility", value: "Android & iPhone" },
   { icon: ShieldCheck, label: "Safety & Tracking", value: "GPS Tracked · Disc Brake" },

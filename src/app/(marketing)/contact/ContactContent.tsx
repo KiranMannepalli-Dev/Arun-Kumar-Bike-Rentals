@@ -192,7 +192,7 @@ const faqItems = [
     },
     {
         question: "What are the performance specs of the scooters?",
-        answer: "Our premium EV fleet offers a range of up to 100km on a full charge and a top speed of 80kmh. Fast charging (up to 80%) is available in just 45 minutes."
+        answer: "Our premium EV fleet offers a range of up to 110km on a full charge and a top speed of 80kmh. Fast charging (up to 80%) is available in just 45 minutes."
     },
     {
         question: "Do you offer weekly or long-term rentals?",

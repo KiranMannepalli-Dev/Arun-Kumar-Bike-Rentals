@@ -12,7 +12,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 import { Badge } from '@/components/ui/badge';
 import { SITE_CONFIG } from '@/config/site';
 import { HOME_FAQ_ITEMS } from '@/lib/seo';
-import { ShieldCheck, Star, Bike as BikeIcon, ArrowRight, CreditCard, UserCheck, GraduationCap, Leaf, Search, IndianRupee } from 'lucide-react';
+import { ShieldCheck, Star, Bike as BikeIcon, ArrowRight, CreditCard, UserCheck, GraduationCap, Leaf, Search, IndianRupee, MapPin } from 'lucide-react';
 import { motion } from "framer-motion";
 import { ScooterShowcase } from '@/components/ScooterShowcase';
 
@@ -243,7 +243,7 @@ function HeroSection({ onWhatsAppClick }: { onWhatsAppClick: () => void }) {
                             <HeroHeadline />
                         </h1>
                         <p className="mt-2 text-xs sm:text-sm md:text-[15px] text-zinc-700 max-w-md leading-relaxed font-medium">
-                            Looking for the best bike rentals in Hyderabad? Rent the high-performance VIDA VX2 Plus electric scooter from ₹35/hr with zero petrol cost, 100 km range, minimal ₹2,000 deposit, and instant WhatsApp booking across LB Nagar, Saroor Nagar, Dilsukhnagar, and all Hyderabad.
+                            Looking for the best bike rentals in Hyderabad? Rent the high-performance VIDA VX2 Plus electric scooter from ₹35/hr with zero petrol cost, 110 km range, minimal ₹2,000 deposit, and instant WhatsApp booking across LB Nagar, Saroor Nagar, Dilsukhnagar, and all Hyderabad.
                         </p>
                         <div className="mt-5 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 justify-start">
                             <Button 
@@ -315,7 +315,7 @@ function StatsSection() {
 function WhyChooseUs() {
     return (
         <section className="py-6 md:py-10 bg-white overflow-hidden">
-            <div className="container relative">
+            <div className="container relative px-3 sm:px-4">
                 <div className="text-center max-w-2xl mx-auto mb-6">
                     <Badge variant="outline" className="mb-2 border-emerald-200 bg-emerald-50 text-emerald-700 py-1 px-4 text-[10px] tracking-widest uppercase font-bold">The Winev Advantage</Badge>
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-headline font-semibold text-zinc-950 tracking-tight">Why Choose <span className="text-primary">Winev?</span></h2>
@@ -324,16 +324,16 @@ function WhyChooseUs() {
                     </p>
                 </div>
                 
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 relative z-10">
+                <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2.5 sm:gap-4 relative z-10">
                     {whyChooseUsItems.map((item) => (
-                        <div key={item.title}>
-                            <Card className="h-full rounded-2xl border border-zinc-200 bg-white hover:border-primary/40 shadow-sm transition-colors group">
-                                <CardContent className="p-4 sm:p-5 text-center flex flex-col items-center">
-                                    <div className="h-10 w-10 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center justify-center mb-3 group-hover:scale-105 transition-transform duration-200">
-                                        <item.icon className="h-5 w-5 text-primary" />
+                        <div key={item.title} className="last:col-span-2 sm:last:col-span-1 last:max-w-xs last:mx-auto last:w-full">
+                            <Card className="h-full rounded-xl sm:rounded-2xl border border-zinc-200 bg-white hover:border-primary/40 shadow-xs sm:shadow-sm transition-colors group">
+                                <CardContent className="p-3 sm:p-4 md:p-5 text-center flex flex-col items-center h-full">
+                                    <div className="h-8 w-8 sm:h-9 sm:w-9 md:h-10 md:w-10 rounded-lg sm:rounded-xl bg-emerald-50 border border-emerald-200 flex items-center justify-center mb-2 sm:mb-3 shrink-0 group-hover:scale-105 transition-transform duration-200">
+                                        <item.icon className="h-4 w-4 md:h-5 md:w-5 text-primary" />
                                     </div>
-                                    <h3 className="text-sm sm:text-base font-bold text-zinc-950 mb-1.5">{item.title}</h3>
-                                    <p className="text-xs text-zinc-600 leading-relaxed">
+                                    <h3 className="text-xs sm:text-sm md:text-base font-bold text-zinc-950 mb-1 leading-snug md:leading-normal">{item.title}</h3>
+                                    <p className="text-[11px] sm:text-xs text-zinc-600 leading-snug md:leading-relaxed">
                                         {item.description}
                                     </p>
                                 </CardContent>
@@ -406,21 +406,28 @@ function RentalPlansSection() {
 function HowItWorks() {
     return (
         <section className="py-6 md:py-8 bg-zinc-50/70 border-y border-zinc-200">
-             <div className="container">
+             <div className="container px-2 sm:px-4">
                 <div className="text-center max-w-xl mx-auto">
                     <h2 className="text-xl sm:text-2xl font-headline font-semibold text-zinc-950 tracking-tight">Get Rolling in <span className="text-primary">3 Simple Steps</span></h2>
                     <p className="mt-1.5 text-xs sm:text-sm text-zinc-600">
                         Renting an electric scooter has never been easier.
                     </p>
                 </div>
-                <div className="mt-5 grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="mt-5 grid grid-cols-3 md:grid-cols-3 gap-2 sm:gap-3 md:gap-4">
                     {howItWorksSteps.map((step) => (
-                        <div key={step.step} className="text-center p-3">
-                            <div className="flex items-center justify-center h-10 w-10 rounded-xl bg-emerald-50 border border-emerald-200 text-primary mx-auto">
-                                <span className="text-base font-bold">{step.step}</span>
+                        <div 
+                            key={step.step} 
+                            className="text-center p-2 sm:p-2.5 md:p-3 bg-white/80 md:bg-transparent rounded-xl md:rounded-none border border-zinc-200/80 md:border-0 shadow-xs md:shadow-none flex flex-col items-center justify-start h-full"
+                        >
+                            <div className="flex items-center justify-center h-8 w-8 sm:h-9 sm:w-9 md:h-10 md:w-10 rounded-lg sm:rounded-xl bg-emerald-50 border border-emerald-200 text-primary mx-auto shrink-0">
+                                <span className="text-xs sm:text-sm md:text-base font-bold">{step.step}</span>
                             </div>
-                            <h3 className="mt-2.5 text-sm sm:text-base font-bold text-zinc-950">{step.title}</h3>
-                            <p className="mt-1 text-xs text-zinc-600 leading-relaxed">{step.description}</p>
+                            <h3 className="mt-2 md:mt-2.5 text-[11px] sm:text-sm md:text-base font-bold text-zinc-950 leading-tight md:leading-normal">
+                                {step.title}
+                            </h3>
+                            <p className="mt-1 text-[10px] sm:text-xs text-zinc-600 leading-snug md:leading-relaxed">
+                                {step.description}
+                            </p>
                         </div>
                     ))}
                 </div>
@@ -485,19 +492,22 @@ function DocumentsSection() {
 
     return (
         <section className="py-6 md:py-8 bg-zinc-50/70 border-b border-zinc-200">
-            <div className="container">
+            <div className="container px-2 sm:px-4">
                 <div className="text-center max-w-xl mx-auto mb-5">
                     <h2 className="text-xl sm:text-2xl font-headline font-semibold text-zinc-950 tracking-tight">Required <span className="text-primary">Documents</span></h2>
                     <p className="mt-1.5 text-xs sm:text-sm text-zinc-600">Please bring the following original documents for a quick and easy pickup.</p>
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div className="grid grid-cols-3 gap-2 sm:gap-3 md:gap-4">
                     {docs.map((doc, idx) => (
-                        <div key={idx} className="flex flex-col items-center text-center p-3">
-                            <div className="h-10 w-10 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center justify-center mb-3">
-                                <doc.icon className="h-5 w-5 text-primary" />
+                        <div 
+                            key={idx} 
+                            className="flex flex-col items-center text-center p-2 sm:p-2.5 md:p-3 bg-white/80 md:bg-transparent rounded-xl md:rounded-none border border-zinc-200/80 md:border-0 shadow-xs md:shadow-none h-full"
+                        >
+                            <div className="h-8 w-8 sm:h-9 sm:w-9 md:h-10 md:w-10 rounded-lg sm:rounded-xl bg-emerald-50 border border-emerald-200 flex items-center justify-center mb-2 md:mb-3 shrink-0">
+                                <doc.icon className="h-4 w-4 md:h-5 md:w-5 text-primary" />
                             </div>
-                            <h3 className="text-sm sm:text-base font-bold text-zinc-950 mb-1.5">{doc.title}</h3>
-                            <p className="text-xs text-zinc-600 leading-relaxed">{doc.description}</p>
+                            <h3 className="text-[11px] sm:text-sm md:text-base font-bold text-zinc-950 mb-1 leading-tight md:leading-normal">{doc.title}</h3>
+                            <p className="text-[10px] sm:text-xs text-zinc-600 leading-snug md:leading-relaxed">{doc.description}</p>
                         </div>
                     ))}
                 </div>
@@ -525,7 +535,41 @@ function Testimonials() {
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-headline font-semibold text-zinc-950 tracking-tight">What Our <span className="text-primary">Riders Say</span></h2>
                 </div>
                 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {/* Mobile View: Side-by-side auto-moving marquee */}
+                <div className="md:hidden overflow-hidden relative w-full -mx-4 px-4 py-1 [mask-image:linear-gradient(to_right,transparent,black_4%,black_96%,transparent)]">
+                    <div className="animate-marquee flex gap-3">
+                        {[...testimonials, ...testimonials].map((testimonial, idx) => (
+                            <Card 
+                                key={`${testimonial.name}-${idx}`} 
+                                className="w-[270px] shrink-0 rounded-2xl overflow-hidden bg-white border border-zinc-200 shadow-xs flex flex-col justify-between"
+                            >
+                                <CardContent className="p-4 flex flex-col justify-between h-full">
+                                    <div>
+                                        <div className="flex items-center gap-2.5">
+                                            <Avatar className="h-9 w-9 border border-emerald-200 shadow-xs shrink-0">
+                                                <Image src={testimonial.image} alt={testimonial.name} width={36} height={36} quality={75} className="h-full w-full object-cover" />
+                                                <AvatarFallback className="bg-emerald-50 text-primary text-xs font-bold">{testimonial.avatar}</AvatarFallback>
+                                            </Avatar>
+                                            <div className="min-w-0">
+                                                <p className="font-bold text-xs text-zinc-950 tracking-tight truncate">{testimonial.name}</p>
+                                                <p className="text-[9px] uppercase tracking-widest text-primary font-semibold">{testimonial.role}</p>
+                                            </div>
+                                        </div>
+                                        <div className="mt-2.5 flex gap-1">
+                                            {[...Array(5)].map((_, i) => <Star key={i} className="h-3 w-3 fill-yellow-500 text-yellow-500" />)}
+                                        </div>
+                                        <p className="mt-2 text-xs text-zinc-700 leading-relaxed italic line-clamp-4">
+                                            "{testimonial.text}"
+                                        </p>
+                                    </div>
+                                </CardContent>
+                            </Card>
+                        ))}
+                    </div>
+                </div>
+
+                {/* Desktop View: Grid */}
+                <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-4">
                     {testimonials.map((testimonial) => (
                         <Card key={testimonial.name} className="relative rounded-2xl overflow-hidden group bg-white border-zinc-200 hover:border-primary/40 shadow-sm transition-all duration-300">
                             <CardContent className="p-4 sm:p-5">
@@ -562,8 +606,8 @@ function Testimonials() {
 
 function HyderabadLocalitiesSection() {
     return (
-        <section className="py-6 md:py-10 bg-white border-t border-zinc-200">
-            <div className="container max-w-5xl">
+        <section className="py-6 md:py-10 pb-16 sm:pb-12 md:pb-10 bg-white border-t border-zinc-200">
+            <div className="container max-w-5xl px-3 sm:px-4">
                 <div className="text-center max-w-2xl mx-auto mb-6">
                     <Badge variant="outline" className="mb-2 border-emerald-200 bg-emerald-50 text-emerald-700 py-1 px-4 text-[10px] tracking-widest uppercase font-bold">
                         Hyderabad City Coverage
@@ -571,26 +615,37 @@ function HyderabadLocalitiesSection() {
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-headline font-semibold text-zinc-950 tracking-tight">
                         Bike Rentals Across <span className="text-primary">Hyderabad &amp; Secunderabad</span>
                     </h2>
-                    <p className="mt-2 text-xs sm:text-sm text-zinc-600 leading-relaxed">
+                    <p className="mt-2 text-xs sm:text-sm text-zinc-600 leading-relaxed max-w-xl mx-auto">
                         Looking for bike rental near you? Winev provides convenient electric bike and scooter rentals serving all major residential, commercial, and IT hubs across Hyderabad.
                     </p>
                 </div>
 
-                <div className="flex flex-wrap items-center justify-center gap-2 max-w-4xl mx-auto">
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 sm:gap-2.5 max-w-4xl mx-auto">
                     {SITE_CONFIG.serviceAreas.map((area) => (
-                        <span
+                        <div
                             key={area}
-                            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-zinc-50 border border-zinc-200 text-zinc-800 text-xs font-medium hover:border-primary/50 transition-colors"
+                            className="flex items-center gap-2 p-2 sm:p-2.5 rounded-xl bg-white border border-zinc-200/90 hover:border-primary/50 shadow-2xs hover:shadow-xs transition-all group min-w-0"
                         >
-                            <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-                            Bike Rental in {area}
-                        </span>
+                            <span className="h-2 w-2 rounded-full bg-emerald-500 shrink-0 ring-3 ring-emerald-100 group-hover:scale-125 transition-transform" />
+                            <div className="min-w-0 flex-1 leading-tight text-left">
+                                <span className="text-[9px] sm:text-[10px] text-zinc-500 font-medium uppercase tracking-wider block truncate">
+                                    Bike Rental
+                                </span>
+                                <span className="text-xs sm:text-[13px] font-bold text-zinc-950 truncate block">
+                                    {area}
+                                </span>
+                            </div>
+                        </div>
                     ))}
                 </div>
 
-                <div className="mt-6 rounded-2xl bg-zinc-50/80 border border-zinc-200 p-4 sm:p-5 text-center max-w-3xl mx-auto">
+                <div className="mt-6 rounded-2xl bg-zinc-50/90 border border-zinc-200 p-4 sm:p-5 text-center max-w-3xl mx-auto shadow-2xs">
+                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200/60 text-emerald-800 text-[11px] font-bold mb-2">
+                        <MapPin className="h-3 w-3 text-primary" />
+                        <span>Instant Hub Pickup &amp; WhatsApp Booking</span>
+                    </div>
                     <p className="text-xs sm:text-sm text-zinc-700 leading-relaxed">
-                        Whether you need a two-wheeler for your daily office commute to <strong className="text-zinc-950">Hitec City &amp; Madhapur</strong>, short errands around <strong className="text-zinc-950">Dilsukhnagar &amp; LB Nagar</strong>, or an economical zero-fuel ride for college or delivery, Winev is Hyderabad's highest-rated EV bike rental platform.
+                        Whether you need a two-wheeler for your daily office commute to <strong className="text-zinc-950 font-semibold">Hitec City &amp; Madhapur</strong>, short errands around <strong className="text-zinc-950 font-semibold">Dilsukhnagar &amp; LB Nagar</strong>, or an economical zero-fuel ride for college or delivery, Winev is Hyderabad's highest-rated EV bike rental platform.
                     </p>
                 </div>
             </div>
