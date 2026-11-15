@@ -4,16 +4,18 @@ import { SITE_CONFIG } from '@/config/site';
 import { buildHomeJsonLd } from '@/lib/seo';
 
 export const metadata: Metadata = {
-  title: 'VIDA VX2 Plus Electric Scooter Rentals in Hyderabad from ₹35/hr',
+  title: {
+    absolute: 'Bike Rentals in Hyderabad | Winev - #1 EV Bike & Scooter Rental from ₹35/hr',
+  },
   description:
-    'Rent the VIDA VX2 Plus electric scooter in Hyderabad starting at ₹35/hr (Daily ₹449, Weekly ₹2,199, Monthly ₹8,799). 100 km range, 80 km/h speed, ₹2,000 refundable deposit, Android & iPhone app support, and instant WhatsApp booking.',
+    'Best bike rentals in Hyderabad from ₹35/hr, ₹449/day, or ₹2,199/week. Rent premium electric bikes and scooters with 100 km range, 80 km/h top speed, minimal deposit, and instant WhatsApp booking across all Hyderabad localities.',
   alternates: {
     canonical: '/',
   },
   openGraph: {
-    title: 'VIDA VX2 Plus Electric Scooter Rentals in Hyderabad from ₹35/hr',
+    title: 'Bike Rentals in Hyderabad | Winev - #1 EV Bike & Scooter Rental',
     description:
-      'Rent in 6 colors with 100 km range, 80 km/h speed, 45-min fast charging, and ₹2,000 refundable deposit. Book instantly on WhatsApp.',
+      'Rent the VIDA VX2 Plus EV bike & scooter in Hyderabad from ₹35/hr. 100 km range, 80 km/h top speed, 45-min fast charging, and minimal ₹2,000 refundable deposit.',
     url: SITE_CONFIG.url,
     type: 'website',
   },

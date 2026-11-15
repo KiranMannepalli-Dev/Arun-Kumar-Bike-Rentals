@@ -7,48 +7,52 @@ export interface FaqEntry {
 
 export const HOME_FAQ_ITEMS: FaqEntry[] = [
   {
-    question: "What documents are required?",
+    question: "How do I rent a bike in Hyderabad with Winev?",
     answer:
-      "A valid original Driving License, Aadhaar or PAN Card, and a proof of local address (utility bill/rental agreement).",
+      "Renting a bike in Hyderabad is simple: 1) Pick your hourly, daily, weekly, or monthly plan online, 2) Click 'Book via WhatsApp' to connect with us at 090148 27770, and 3) Bring your original Driving License and Aadhaar Card to our Saroor Nagar pickup location. Your sanitized scooter is ready to ride in minutes.",
   },
   {
-    question: "Is there a security deposit?",
+    question: "What is the cost of bike rentals in Hyderabad?",
     answer:
-      "Yes, a minimal refundable deposit of ₹2,000 is required for all premium electric bike rentals.",
+      "Winev offers Hyderabad's most affordable bike rental rates: Hourly rentals start from ₹35/hr (min. 12 hrs), Daily 24-hr rentals are ₹449, Weekly rentals are ₹2,199 (our most popular plan), and Monthly commuter rentals are ₹8,799. Fast charging support is included.",
   },
   {
-    question: "What is the charging speed?",
+    question: "Is there a security deposit for bike rentals?",
     answer:
-      "Our fleet supports fast charging at both Ather and Vida power stations, reaching 80% in just 45 minutes.",
+      "Yes, we maintain an industry-low refundable security deposit of just ₹2,000 for all premium electric bike and scooter rentals, refunded immediately upon vehicle return.",
   },
   {
-    question: "Do you offer weekly rates?",
+    question: "What documents are required to rent a two-wheeler in Hyderabad?",
     answer:
-      "Yes! Weekly rentals start at just ₹2,199, offering a significant discount for long-term commuters.",
+      "You need an original Driving License, Aadhaar Card or PAN Card, and proof of local address (utility bill, rental agreement, or company ID). Students can show a college ID for special rates.",
+  },
+  {
+    question: "Can I rent a bike in Hyderabad for daily office commute or delivery work?",
+    answer:
+      "Yes! Our weekly (₹2,199) and monthly (₹8,799) plans are widely used by IT professionals commuting to Madhapur, Hitec City, and Gachibowli, as well as delivery riders seeking zero-petrol running costs.",
+  },
+  {
+    question: "Which areas in Hyderabad do you serve?",
+    answer:
+      "We serve riders across all of Hyderabad and Secunderabad, with direct pickup near Saroor Nagar, LB Nagar, Dilsukhnagar, Kothapet, Uppal, Madhapur, and surrounding metro hubs.",
   },
 ];
 
 export const FULL_FAQ_ITEMS: FaqEntry[] = [
+  ...HOME_FAQ_ITEMS,
   {
-    question: "What documents are required to rent a scooter?",
+    question: "What are the performance specs of the rental scooters?",
+    answer: `Our premium VIDA VX2 Plus electric fleet offers a certified range of up to ${SITE_CONFIG.stats.range} per charge, top speed of ${SITE_CONFIG.stats.speed}, dual removable batteries, and fast 0–80% charging in just 45 minutes.`,
+  },
+  {
+    question: "Does the rental bike support mobile connectivity?",
     answer:
-      "To rent an electric scooter, you must provide a valid original Driving License, an Aadhaar Card or PAN Card, and a valid Local Address Proof (such as a utility bill or rental agreement).",
+      "Yes! The VIDA VX2 Plus supports full Bluetooth mobile pairing with both Android and iPhone devices for turn-by-turn navigation, battery status, and trip metrics.",
   },
   {
-    question: "Is there a security deposit?",
-    answer: `Yes, we maintain a minimal security deposit of ₹${SITE_CONFIG.stats.deposit} to ensure the safety and maintenance of our premium electric fleet. This is fully refundable upon the safe return of the vehicle.`,
-  },
-  {
-    question: "What are the performance specs of the scooters?",
-    answer: `Our premium EV fleet offers a range of up to ${SITE_CONFIG.stats.range} on a full charge and a top speed of ${SITE_CONFIG.stats.speed}. Fast charging up to 80% is supported in around 45 minutes.`,
-  },
-  {
-    question: "Do you offer weekly or long-term rentals?",
-    answer: `Absolutely! We offer weekly rental rates starting at ₹${SITE_CONFIG.stats.weeklyRent} and monthly commuter plans. This is ideal for daily commuters and riders looking for an affordable long-term mobility solution.`,
-  },
-  {
-    question: "What is the booking process?",
-    answer: `You can book easily through WhatsApp. Just send us a message to our primary number (${SITE_CONFIG.phoneDisplay}) or our secondary line (${SITE_CONFIG.phone2Display}), and our team will guide you through the instant booking process.`,
+    question: "What is included with every bike rental?",
+    answer:
+      "Every Winev rental includes a sanitized vehicle, a sanitized ISI-certified helmet, complimentary battery charging assistance, and 24/7 on-call customer support across Hyderabad.",
   },
 ];
 
@@ -128,7 +132,15 @@ export function buildHomeJsonLd() {
         "@id": ORGANIZATION_ID,
         name: SITE_CONFIG.name,
         legalName: SITE_CONFIG.legalName,
-        alternateName: ["Winev Bike Rentals", "Winev EV Rentals Hyderabad"],
+        alternateName: [
+          "Winev Bike Rentals",
+          "Winev Bike Rental Hyderabad",
+          "Bike Rentals in Hyderabad",
+          "Best Bike Rentals in Hyderabad",
+          "Two Wheeler Rental Hyderabad",
+          "EV Bike Rental Hyderabad",
+          "Electric Scooter Rental Hyderabad",
+        ],
         description: SITE_CONFIG.description,
         url: SITE_CONFIG.url,
         logo: `${SITE_CONFIG.url}/Second Logo for Winev.png`,
@@ -217,11 +229,11 @@ export function buildHomeJsonLd() {
         })),
         hasOfferCatalog: {
           "@type": "OfferCatalog",
-          name: "Electric Scooter Rental Plans Hyderabad",
+          name: "Bike Rentals & EV Scooter Rental Plans Hyderabad",
           itemListElement: [
             {
               "@type": "Offer",
-              name: "Hourly Electric Scooter Rental (Min. 12 Hours)",
+              name: "Hourly Bike Rental in Hyderabad (From ₹35/hr, Min. 12 Hours)",
               price: "35",
               priceCurrency: "INR",
               availability: "https://schema.org/InStock",
@@ -229,7 +241,7 @@ export function buildHomeJsonLd() {
             },
             {
               "@type": "Offer",
-              name: "Daily Electric Scooter Rental (24 Hours)",
+              name: "Daily Bike Rental in Hyderabad (₹449/day - 24 Hours)",
               price: "449",
               priceCurrency: "INR",
               availability: "https://schema.org/InStock",
@@ -237,7 +249,7 @@ export function buildHomeJsonLd() {
             },
             {
               "@type": "Offer",
-              name: "Weekly Electric Scooter Rental",
+              name: "Weekly Bike Rental in Hyderabad (₹2,199/week - Most Popular)",
               price: "2199",
               priceCurrency: "INR",
               availability: "https://schema.org/InStock",
@@ -245,7 +257,7 @@ export function buildHomeJsonLd() {
             },
             {
               "@type": "Offer",
-              name: "Monthly Electric Scooter Rental",
+              name: "Monthly Bike Rental in Hyderabad (₹8,799/month - Best Commuter Plan)",
               price: "8799",
               priceCurrency: "INR",
               availability: "https://schema.org/InStock",
@@ -271,9 +283,9 @@ export function buildHomeJsonLd() {
       {
         "@type": "Product",
         "@id": `${SITE_CONFIG.url}/#vida-vx2-plus`,
-        name: "VIDA VX2 Plus Electric Scooter Rental",
+        name: "VIDA VX2 Plus Electric Bike & Scooter Rental in Hyderabad",
         description:
-          "Available exclusively for hourly, daily, weekly, and monthly rentals in Hyderabad across 6 colors with 80 km/h top speed, 100 km range, 45-minute fast charging, Android & iPhone app compatibility, GPS tracking, and ₹2,000 refundable deposit.",
+          "Best bike rentals in Hyderabad. Rent the VIDA VX2 Plus electric scooter & two wheeler starting from ₹35/hr, ₹449/day, ₹2,199/week, or ₹8,799/month across Saroor Nagar, LB Nagar, Dilsukhnagar, and all Hyderabad. 80 km/h speed, 100 km range, 45-min fast charging, Android & iPhone app connectivity, and ₹2,000 refundable deposit.",
         image: [
           `${SITE_CONFIG.url}/Bikes/Scooter png 1.jpg`,
           `${SITE_CONFIG.url}/Bikes/Scooter png 2.png`,
@@ -283,7 +295,7 @@ export function buildHomeJsonLd() {
           "@type": "Brand",
           name: "VIDA",
         },
-        category: "Electric Scooter Rental",
+        category: "Bike Rental & Two Wheeler Rental in Hyderabad",
         color: [
           "Electric Cyan",
           "Crimson Red",

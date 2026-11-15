@@ -4,13 +4,13 @@ import { SITE_CONFIG } from '@/config/site';
 import { buildBreadcrumbJsonLd } from '@/lib/seo';
 
 export const metadata: Metadata = {
-  title: 'Contact Winev Scooter Rental Hyderabad | WhatsApp & Location',
-  description: `Contact ${SITE_CONFIG.name} in Saroor Nagar East, Hyderabad. Call ${SITE_CONFIG.phoneDisplay}, message directly on WhatsApp, or visit us for electric scooter rentals.`,
+  title: 'Contact Winev Bike Rentals Hyderabad | WhatsApp & Location',
+  description: `Contact ${SITE_CONFIG.name} in Saroor Nagar East, Hyderabad. Call ${SITE_CONFIG.phoneDisplay}, message directly on WhatsApp, or visit us for electric bike & scooter rentals from ₹35/hr.`,
   alternates: {
     canonical: '/contact',
   },
   openGraph: {
-    title: 'Contact Winev Scooter Rental Hyderabad',
+    title: 'Contact Winev Bike Rentals Hyderabad',
     description: `Instant WhatsApp booking (${SITE_CONFIG.phoneDisplay}) and pickup location in Saroor Nagar East, Hyderabad.`,
     url: `${SITE_CONFIG.url}/contact`,
   },

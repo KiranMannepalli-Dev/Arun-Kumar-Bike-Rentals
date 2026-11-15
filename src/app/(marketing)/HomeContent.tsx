@@ -193,6 +193,7 @@ export default function HomeContent() {
             <VideoSection />
             <DocumentsSection />
             <Testimonials />
+            <HyderabadLocalitiesSection />
             <FaqSection />
             <CtaSection onCtaClick={openContactModal} />
             
@@ -217,21 +218,11 @@ export default function HomeContent() {
 function HeroHeadline() {
     return (
         <span className="inline-block">
-            <span className="md:hidden">
-                Premium EV Scooter{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-700 via-primary to-emerald-500">
-                    Rentals
-                </span>
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-emerald-700 via-primary to-emerald-500">
+                Bike Rentals in Hyderabad
             </span>
-            <span className="hidden md:inline">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-700 via-primary to-emerald-500">
-                    Premium Rides
-                </span>{" "}
-                for{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-700 via-primary to-emerald-500">
-                    Every Journey
-                </span>
-                .
+            <span className="block text-xl sm:text-2xl md:text-3xl text-zinc-900 font-semibold tracking-tight mt-1">
+                Affordable EV Scooters &amp; Two Wheeler Rentals from ₹35/hr
             </span>
         </span>
     );
@@ -245,15 +236,14 @@ function HeroSection({ onWhatsAppClick }: { onWhatsAppClick: () => void }) {
                     <div className="w-full max-w-xl z-20">
                         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 mb-3">
                             <BikeIcon className="h-3.5 w-3.5 text-primary" />
-                            <span className="text-[10px] font-bold uppercase tracking-widest text-emerald-700">Premium Mobility</span>
+                            <span className="text-[10px] font-bold uppercase tracking-widest text-emerald-700">#1 Bike &amp; EV Rental in Hyderabad</span>
                         </div>
 
                         <h1 className="text-2xl sm:text-3xl lg:text-4xl font-headline font-bold tracking-tight text-zinc-950 leading-[1.2] mb-2">
                             <HeroHeadline />
                         </h1>
                         <p className="mt-2 text-xs sm:text-sm md:text-[15px] text-zinc-700 max-w-md leading-relaxed font-medium">
-                            Rent from our fleet of 15+ premium electric scooters in Hyderabad from ₹35/hr. <br className="hidden md:block" />
-                            Minimal deposit, GPS tracked &amp; cleaned fleet. Book on WhatsApp instantly.
+                            Looking for the best bike rentals in Hyderabad? Rent the high-performance VIDA VX2 Plus electric scooter from ₹35/hr with zero petrol cost, 100 km range, minimal ₹2,000 deposit, and instant WhatsApp booking across LB Nagar, Saroor Nagar, Dilsukhnagar, and all Hyderabad.
                         </p>
                         <div className="mt-5 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 justify-start">
                             <Button 
@@ -564,6 +554,44 @@ function Testimonials() {
                             <ArrowRight className="h-4 w-4" />
                         </a>
                     </Button>
+                </div>
+            </div>
+        </section>
+    );
+}
+
+function HyderabadLocalitiesSection() {
+    return (
+        <section className="py-6 md:py-10 bg-white border-t border-zinc-200">
+            <div className="container max-w-5xl">
+                <div className="text-center max-w-2xl mx-auto mb-6">
+                    <Badge variant="outline" className="mb-2 border-emerald-200 bg-emerald-50 text-emerald-700 py-1 px-4 text-[10px] tracking-widest uppercase font-bold">
+                        Hyderabad City Coverage
+                    </Badge>
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-headline font-semibold text-zinc-950 tracking-tight">
+                        Bike Rentals Across <span className="text-primary">Hyderabad &amp; Secunderabad</span>
+                    </h2>
+                    <p className="mt-2 text-xs sm:text-sm text-zinc-600 leading-relaxed">
+                        Looking for bike rental near you? Winev provides convenient electric bike and scooter rentals serving all major residential, commercial, and IT hubs across Hyderabad.
+                    </p>
+                </div>
+
+                <div className="flex flex-wrap items-center justify-center gap-2 max-w-4xl mx-auto">
+                    {SITE_CONFIG.serviceAreas.map((area) => (
+                        <span
+                            key={area}
+                            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-zinc-50 border border-zinc-200 text-zinc-800 text-xs font-medium hover:border-primary/50 transition-colors"
+                        >
+                            <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+                            Bike Rental in {area}
+                        </span>
+                    ))}
+                </div>
+
+                <div className="mt-6 rounded-2xl bg-zinc-50/80 border border-zinc-200 p-4 sm:p-5 text-center max-w-3xl mx-auto">
+                    <p className="text-xs sm:text-sm text-zinc-700 leading-relaxed">
+                        Whether you need a two-wheeler for your daily office commute to <strong className="text-zinc-950">Hitec City &amp; Madhapur</strong>, short errands around <strong className="text-zinc-950">Dilsukhnagar &amp; LB Nagar</strong>, or an economical zero-fuel ride for college or delivery, Winev is Hyderabad's highest-rated EV bike rental platform.
+                    </p>
                 </div>
             </div>
         </section>

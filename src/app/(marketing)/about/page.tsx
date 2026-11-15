@@ -4,14 +4,14 @@ import { SITE_CONFIG } from '@/config/site';
 import { buildBreadcrumbJsonLd } from '@/lib/seo';
 
 export const metadata: Metadata = {
-  title: 'About Winev Scooter Rental Hyderabad | Our Journey & Team',
-  description: 'Founded in 2025 in Hyderabad, Winev Scooter Rental (Ashwin Traders) provides affordable, GPS-tracked electric scooter rentals across Saroor Nagar, LB Nagar, and Hyderabad.',
+  title: 'About Winev Bike Rentals Hyderabad | Our Journey & Team',
+  description: 'Founded in 2025 in Hyderabad, Winev Bike Rentals (Ashwin Traders) provides affordable, GPS-tracked electric bike and scooter rentals across Saroor Nagar, LB Nagar, Dilsukhnagar, and all Hyderabad.',
   alternates: {
     canonical: '/about',
   },
   openGraph: {
-    title: 'About Winev Scooter Rental Hyderabad',
-    description: 'Meet the founders and operations team behind Hyderabad’s 4.9★ rated electric scooter rental fleet.',
+    title: 'About Winev Bike Rentals Hyderabad',
+    description: 'Meet the founders and operations team behind Hyderabad’s 4.9★ rated electric bike and scooter rental fleet.',
     url: `${SITE_CONFIG.url}/about`,
   },
 };

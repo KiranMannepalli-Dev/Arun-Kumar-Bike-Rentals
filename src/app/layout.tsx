@@ -74,6 +74,7 @@ export const metadata: Metadata = {
 };
 
 import { WhatsAppButton } from '@/components/WhatsAppButton';
+import Script from 'next/script';
 
 export default function RootLayout({
   children,
@@ -83,6 +84,29 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${outfit.variable}`}>
       <body className="font-body antialiased bg-background text-foreground min-h-screen">
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-MWJJSWPW"
+            height="0"
+            width="0"
+            style={{ display: 'none', visibility: 'hidden' }}
+          />
+        </noscript>
+        <Script
+          id="gtm-init"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+            `,
+          }}
+        />
+        <Script
+          src="https://www.googletagmanager.com/gtm.js?id=GTM-MWJJSWPW"
+          strategy="afterInteractive"
+        />
         {children}
         <WhatsAppButton />
         <Toaster />

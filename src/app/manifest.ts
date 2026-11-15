@@ -3,8 +3,8 @@ import { SITE_CONFIG } from "@/config/site";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: SITE_CONFIG.name,
-    short_name: "Winev EV",
+    name: "Winev Bike Rentals - Hyderabad",
+    short_name: "Winev Bikes",
     description: SITE_CONFIG.description,
     start_url: "/",
     display: "standalone",

@@ -4,14 +4,14 @@ import { SITE_CONFIG } from "@/config/site";
 import { FULL_FAQ_ITEMS, buildBreadcrumbJsonLd, buildFaqJsonLd } from "@/lib/seo";
 
 export const metadata: Metadata = {
-    title: "EV Scooter Rental FAQ Hyderabad | Documents, Deposit & Pricing",
-    description: "Answers to common questions about Winev electric scooter rentals in Hyderabad: required Driving License & ID, ₹2,000 refundable deposit, 45-min fast charging, and weekly/monthly plans.",
+    title: "Bike Rentals in Hyderabad FAQ | Pricing, Documents & Deposit",
+    description: "Got questions about bike rentals in Hyderabad? Find instant answers on pricing from ₹35/hr, minimal ₹2,000 refundable deposit, required driving license, and WhatsApp booking.",
     alternates: {
         canonical: "/faq",
     },
     openGraph: {
-        title: "EV Scooter Rental FAQ Hyderabad | Winev Scooter Rental",
-        description: "Quick answers on required documents, ₹2,000 refundable deposit, charging speed, and WhatsApp booking.",
+        title: "Bike Rentals in Hyderabad FAQ | Winev Bike Rentals",
+        description: "Everything you need to know about renting an EV bike or scooter in Hyderabad with Winev.",
         url: `${SITE_CONFIG.url}/faq`,
     },
 };
