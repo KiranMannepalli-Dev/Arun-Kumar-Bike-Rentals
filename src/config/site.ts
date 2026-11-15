@@ -22,7 +22,7 @@ export const SITE_CONFIG = {
   whatsapp: "919014827770",
   instagram: "https://www.instagram.com/winevbike",
   developerUrl: "https://www.tekloria.in",
-  url: "https://winev.in",
+  url: "https://www.winevbikerentals.com",
   googleMapsUrl: "https://www.google.com/maps/place/Winev+Bike+Rental(Ashwin+traders)/@17.3472448,78.5251052,17z/data=!3m1!4b1!4m6!3m5!4s0x3bcb99005b8ca1e7:0xf01abdfa866df6b2!8m2!3d17.3472448!4d78.5251052!16s%2Fg%2F11yrln8392",
   serviceAreas: [
     "Hyderabad",
